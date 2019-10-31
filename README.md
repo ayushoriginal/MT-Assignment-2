@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Baseline for Assignment 2 of 11-731 "Machine Translation and Sequence-to-sequence Models" Fall 2019
 
 This repo contains a simplified implementation of the Transformer [(Vaswani et al, 2019)](https://arxiv.org/abs/1706.03762) to serve as a baseline.
