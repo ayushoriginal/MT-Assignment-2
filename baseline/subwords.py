@@ -35,6 +35,8 @@ def get_args():
     segment_parser = subparsers.add_parser("segment")
     segment_parser.set_defaults(which="segment")
     segment_parser.add_argument("--model", required=True, type=str)
+    segment_parser.add_argument("--input_filename", required=True, type=str)
+    segment_parser.add_argument("--output_filename", required=True, type=str)
     # De-segmentation
     segment_parser = subparsers.add_parser("desegment")
     segment_parser.set_defaults(which="desegment")
@@ -49,8 +51,10 @@ def main():
         train(sys.argv[2:])
     elif args.which == "segment":
         model = load(args.model)
-        for line in sys.stdin:
-            print(" ".join(model.EncodeAsPieces(line)))
+        in_f = open(args.input_filename,encoding="utf-8")
+        out_f = open(args.output_filename, "w+", encoding="utf-8")
+        for line in in_f.readlines():
+            out_f.write(" ".join(model.EncodeAsPieces(line))+"\n")
     elif args.which == "desegment":
         for line in sys.stdin:
             print(desegment(line.strip().split()))
